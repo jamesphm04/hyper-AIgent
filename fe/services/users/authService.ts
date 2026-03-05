@@ -19,6 +19,7 @@ export const loginUser = async (
   password: string
 ): Promise<AuthResponse> => {
   const response = await api.post("users/login", { email, password });
+  // console.log("Login response: ", response.data);
   return response.data;
 };
 

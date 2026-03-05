@@ -22,8 +22,9 @@ export const uploadFile = async (file: File, userID: number) => {
 export const getAllFileInfo = async (
   userId: number
 ): Promise<DocumentInfo[]> => {
-  const response = await api.get(`users/${userId}/documents/all-info`);
-  return response.data.data;
+  // const response = await api.get(`users/${userId}/documents/all-info`);
+  // return response.data.data;
+  return [];
 };
 
 export const fetchFileData = async (documentID: number): Promise<any> => {

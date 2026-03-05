@@ -67,6 +67,7 @@ export const useAuthModal = () => {
       );
       if (signupData) {
         const loginData = await loginUser(data.email, data.password);
+        // console.log("Login data: ", loginData);
         if (loginData) {
           signIn("credentials", {
             redirect: false,

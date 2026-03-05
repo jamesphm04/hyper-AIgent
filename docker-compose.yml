@@ -1,6 +1,15 @@
 version: "3.9"
 
 services:
+  be:
+    build:
+      context: ./be
+      dockerfile: ${BE_DOCKERFILE:-Dockerfile.dev}
+    container_name: hyper-be
+    ports:
+      - "8080:8080"
+    environment:
+      - JAVA_OPTS=-Xmx512m
 
   fe:
     build:
@@ -15,14 +24,20 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV:-development}
       - NEXT_PUBLIC_API_URL=http://be:8080
-  #   depends_on:
-  #     - be
+    depends_on:
+      - be
 
-  # be:
-  #   build:
-  #     context: ./be
-  #   container_name: hyper-be
-  #   ports:
-  #     - "8080:8080"
-  #   environment:
-  #     - PORT=8080
+  db:
+    image: postgres:18
+    container_name: hyper_aigent_db
+    environment:
+      POSTGRES_DB: hyper_aigent_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12341234
+    ports:
+      - "5432:5432"
+    volumes:
+      - hyper_aigent_db_data:/var/lib/postgresql/data 
+
+volumes:
+  hyper_aigent_db_data:

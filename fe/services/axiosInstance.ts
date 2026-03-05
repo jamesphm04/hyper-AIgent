@@ -3,7 +3,7 @@ import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 
 const api = axios.create({
-  baseURL: process.env.BACKEND_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 40000,
   headers: {
     "Content-Type": "application/json",

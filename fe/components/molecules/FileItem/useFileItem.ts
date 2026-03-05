@@ -42,7 +42,7 @@ export const useFileItem = (id: number, chatID: number) => {
   };
 
   const handleShare = () => {
-    console.log("Clicked Share option", chatID, id);
+    // console.log("Clicked Share option", chatID, id);
     handleCloseMoreOptions();
   };
 

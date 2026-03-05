@@ -49,13 +49,14 @@ export const useUploadDocPage = () => {
     }
   }, [currentDocumentId]);
 
-  useEffect(() => {
-    if (status === "authenticated" && session?.user) {
-      getAllFileInfo(session.user.id).then((res) => {
-        dispatch(addDocuments(res));
-      });
-    }
-  }, [status, session, pathname]);
+  // useEffect(() => {
+  //   if (status === "authenticated" && session?.user) {
+  //     getAllFileInfo(session.user.id).then((res) => {
+  //       console.log("Documents: ", res);
+  //       dispatch(addDocuments(res));
+  //     });
+  //   }
+  // }, [status, session, pathname]);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -84,7 +85,7 @@ export const useUploadDocPage = () => {
     }
 
     uploadFile(file, session.user.id).then((uploadedData) => {
-      console.log(uploadedData);
+      // console.log(uploadedData);
 
       dispatch(setCurrentDocumentId(uploadedData.id));
       setFileName(uploadedData.fileName);

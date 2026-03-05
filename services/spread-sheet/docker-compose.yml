@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  gg-sheet:
+    build: .
+    container_name: hyper_aigent_services_csv
+    ports:
+      - "5002:5002"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=postgresql://postgres:12341234@host.docker.internal:5432/hyper_aigent_spread_sheet_db
+
+    volumes:
+      - ./:/app
+    command: python run.py

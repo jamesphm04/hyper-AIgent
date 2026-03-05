@@ -1,0 +1,12 @@
+.env
+downloads/
+app/config.py
+deploy/config.py
+.venv
+__pycache__/
+*.pyc
+*.pyo
+.cache/
+.cache
+
+logs/
