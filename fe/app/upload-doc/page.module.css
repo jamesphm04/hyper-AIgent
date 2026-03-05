@@ -1,0 +1,31 @@
+.logo {
+  width: 148px;
+  height: 99px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Adds a hover effect for better UX */
+}
+
+.hiddenInput {
+  display: none; /* Hides the input field completely */
+}
+
+.uploadLabel {
+  display: inline-block; /* Ensures proper layout */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+}
+
+.pdfViewerWrapper {
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+  scroll-behavior: smooth;
+}

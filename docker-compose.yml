@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  fe:
+    build:
+      context: ./fe
+      dockerfile: ${FE_DOCKERFILE:-Dockerfile.dev}
+    container_name: hyper-fe
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./fe:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - NEXT_PUBLIC_API_URL=http://be:8080
+  #   depends_on:
+  #     - be
+
+  # be:
+  #   build:
+  #     context: ./be
+  #   container_name: hyper-be
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - PORT=8080

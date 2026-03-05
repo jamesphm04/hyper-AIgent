@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 16px;
+  box-sizing: border-box;
+  background-color: #b4b4b8;
+}
+
+.icon {
+  font-size: 18px;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}

@@ -1,0 +1,23 @@
+.customButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.customButton:active {
+  background-color: #afafaf; /* Change color when clicked */
+}
+
+.customButton:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+.fontColorBlack {
+  color: black !important;
+}
