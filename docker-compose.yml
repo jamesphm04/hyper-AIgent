@@ -4,40 +4,42 @@ services:
   be:
     build:
       context: ./be
-      dockerfile: ${BE_DOCKERFILE:-Dockerfile.dev}
-    container_name: hyper-be
+      dockerfile: Dockerfile.dev
     ports:
       - "8080:8080"
-    environment:
-      - JAVA_OPTS=-Xmx512m
+    volumes:
+      - ./be:/app
+      - ~/.m2:/root/.m2
+    env_file:
+      - ./be/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  spreadsheet:
+    build:
+      context: ./services/spread-sheet
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./services/spread-sheet:/app
+    env_file:
+      - ./services/spread-sheet/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   fe:
     build:
       context: ./fe
-      dockerfile: ${FE_DOCKERFILE:-Dockerfile.dev}
-    container_name: hyper-fe
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     volumes:
       - ./fe:/app
       - /app/node_modules
-    environment:
-      - NODE_ENV=${NODE_ENV:-development}
-      - NEXT_PUBLIC_API_URL=http://be:8080
+      - /app/.next
+    env_file:
+      - ./fe/.env
     depends_on:
       - be
-
-  db:
-    image: postgres:18
-    container_name: hyper_aigent_db
-    environment:
-      POSTGRES_DB: hyper_aigent_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12341234
-    ports:
-      - "5432:5432"
-    volumes:
-      - hyper_aigent_db_data:/var/lib/postgresql/data 
-
-volumes:
-  hyper_aigent_db_data:
+      - spreadsheet

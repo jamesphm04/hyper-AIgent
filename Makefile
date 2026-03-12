@@ -1,19 +1,18 @@
-APP_NAME=hyper-AIgent
+.PHONY: up down build clean
 
-.PHONY: dev prod down logs clean
+# Start the whole project
+up:
+	docker compose up
 
-dev:
-	NODE_ENV=development FE_DOCKERFILE=Dockerfile.dev BE_DOCKERFILE=Dockerfile.dev docker compose up --build
-
-prod:
-	NODE_ENV=production FE_DOCKERFILE=Dockerfile BE_DOCKERFILE=Dockerfile docker compose up --build -d
-
+# Stop the whole project
 down:
 	docker compose down
 
-logs:
-	docker compose logs -f
+# Build all images
+build:
+	docker compose build
 
+# Clean up the project
 clean:
-	docker compose down -v
+	docker compose down -v --remove-orphans
 	docker system prune -f

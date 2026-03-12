@@ -1,17 +1,12 @@
-FROM eclipse-temurin:21-jdk-alpine
+FROM maven:3.9.12-eclipse-temurin-25
 
 WORKDIR /app
 
-RUN apk add --no-cache maven git bash
-
+# Pre-cache dependencies
 COPY pom.xml .
-RUN mvn dependency:go-offline
+RUN mvn dependency:go-offline -q
 
-COPY src ./src
+COPY . .
 
 EXPOSE 8080
-
-ENV SPRING_DEVTOOLS_RESTART_ENABLED=true
-ENV SPRING_DEVTOOLS_LIVE_RELOAD_ENABLED=true
-
 CMD ["mvn", "spring-boot:run"]
